@@ -10,4 +10,4 @@ Just 2 files:
 ./index.html
 ./vueApp.js
 ```
-`vueApp.js` will contain all the logic for this app, and the `index.html` file will contain this app’s main view.
+`vueApp.js` contain all the logic for this app, and the `index.html` file contain this app’s main view.
