@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+    <meta charset="utf-8">
+    <title>Code Search</title>
+  </head>
+  <body>
+    <div class="container" id="app">
+	  <div class="row">
+	  <div class="columns medium-12">
+      <h3 class="text-center">Find PHP and JavaScript projects with GitHub API</h3>
+	  <section>
+		<div class="callout secondary">
+		  <h5 class="text-center">Search by Name</h5>
+			<form>
+				<div class="row">
+					<div class="large-3 small-10 columns">
+						<fieldset class="">
+							<legend>Choose language</legend>
+							<input id="phpCb" type="checkbox" value="php" v-model="checkedLangs">
+								<label for="phpCb">PHP</label>
+							<input id="jsCb" type="checkbox" value="javascript" v-model="checkedLangs">
+								<label for="jsCb">JavaScript</label>
+						</fieldset>
+					</div>
+					<div class="large-6 small-10 columns">
+						<label>Enter name of repository or this part
+							<input v-model="projName" type="text" placeholder="example">
+						</label>
+					</div>
+					<div class="large-3 small-10 columns">
+						<br>
+						<a @click="getPosts(projName)" class="button expanded">Find</a>
+					</div>
+				</div>
+			</form>
+			
+		 </div>
+	  </section>
+	  
+	  <h5 class="text-center uppercase">Results <b>(<span>{{ count }}</span>)</b></h5>
+	  
+	  <section>
+	  <div class="columns medium-3" v-for="result in results">
+		  <div class="card">
+			<div class="card-divider">
+			  <h5 v-if="result.name.length<18">{{ result.name }}</h5>
+			  <h5 v-else="result.name.length<18">{{ result.name.substring(0,16) + ".." }}</h5>
+			</div>
+			<div class="card-section">
+				<p>Author: <a :href="result.owner.html_url">{{ result.owner.login }}</a> </p>
+			</div>
+			<span class="label success">Score {{result.score }}</span>
+			<div class="card-section">
+				<a target="_blank" style="display:flex;">
+					<img :src="result.owner.avatar_url" style="height:200px;margin:0 auto;">
+				</a>
+			</div>
+			<div class="card-section" >
+			  <p v-if="result.description!=null" style="height:50px;">{{ result.description.substring(0,50)+"..." }}</p>
+			  <p v-else="result.description!=null" style="height:50px;">...</p>
+			  <br>
+			  <a :href="result.html_url" target="_blank" class="button">Go to GitHub</a>
+			</div>
+			
+		  </div>
+	  </div>
+	  </section>
+	</div>
+	</div>
+    </div>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="vueApp.js"></script>
+  </body>
+</html>
