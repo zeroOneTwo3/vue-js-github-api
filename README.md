@@ -7,7 +7,6 @@ data from the Github Search API.
 ## Project Structure
 Just 2 files:
 ```
-./index.html
-./vueApp.js
+./index.html - main view
+./vueApp.js - app's logic
 ```
-`vueApp.js` contain all the logic for this app, and the `index.html` file contain this app’s main view.
